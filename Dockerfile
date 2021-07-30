@@ -1,5 +1,4 @@
-FROM python:3.9-alpine3.13
-LABEL maintainer="londonappdeveloper.com"
+FROM python:3.9.5-slim-buster
 
 ENV PYTHONUNBUFFERED 1
 
