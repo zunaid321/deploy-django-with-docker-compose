@@ -1,7 +1,11 @@
-FROM python:3.9.5-slim-buster
+FROM python:3.9-alpine3.13
 LABEL maintainer="londonappdeveloper.com"
 
 ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
 
 COPY ./requirements.txt /requirements.txt
 COPY ./app /app
@@ -12,8 +16,6 @@ EXPOSE 8000
 
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
-    apt-get -y install libpq-dev gcc && \
-    pip install psycopg2 && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-deps \
         build-base postgresql-dev musl-dev linux-headers && \
