@@ -3,6 +3,8 @@ LABEL maintainer="londonappdeveloper.com"
 
 ENV PYTHONUNBUFFERED 1
 
+RUN pip install --upgrade pip
+
 COPY ./requirements.txt /requirements.txt
 COPY ./app /app
 COPY ./scripts /scripts
