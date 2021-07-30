@@ -1,10 +1,7 @@
-FROM python:3.9.5-slim-buster
+FROM python:3.9-alpine3.13
+LABEL maintainer="londonappdeveloper.com"
 
 ENV PYTHONUNBUFFERED 1
-
-RUN apt-get update \
-    && apt-get -y install libpq-dev gcc \
-    && pip install psycopg2
 
 COPY ./requirements.txt /requirements.txt
 COPY ./app /app
